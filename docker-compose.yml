@@ -40,7 +40,9 @@ services:
       - app_logs:/app/logs
 
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins
     container_name: petstore-jenkins
     user: root
     ports:
