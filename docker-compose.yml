@@ -30,9 +30,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/petshopapp
       SPRING_DATASOURCE_USERNAME: techpront
       SPRING_DATASOURCE_PASSWORD: 125322
-    depends_on:
-      postgres:
-        condition: service_healthy
     networks:
       - petstore-network
     restart: unless-stopped
