@@ -37,8 +37,8 @@ pipeline {
                 script {
                     sh '''
                         cd /workspace
-                        docker-compose down || true
-                        docker-compose up -d --build
+                        docker-compose -f docker-compose.app.yml down || true
+                        docker-compose -f docker-compose.app.yml up -d --build
                     '''
                 }
             }
