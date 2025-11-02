@@ -20,8 +20,9 @@ pipeline {
                 script {
                     sh '''
                         cd /workspace
-                        # Stop, remove and rebuild app
-                        docker stop petstore-app && docker rm petstore-app && docker-compose up -d --build app || true
+                        # Stop and remove app container, then rebuild
+                        docker stop petstore-app || true
+                        docker rm petstore-app || true
                         docker-compose up -d --build app
                     '''
                 }
