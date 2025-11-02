@@ -20,8 +20,8 @@ pipeline {
                 script {
                     sh '''
                         cd /workspace
-                        # Rebuild app without dependencies
-                        docker-compose up -d --build --no-deps app
+                        # Force recreate app container
+                        docker-compose up -d --build --no-deps --force-recreate --no-attach app
                     '''
                 }
             }
