@@ -34,7 +34,7 @@ public class WebSecurityConfig {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/auth/login", "/auth/register", "/user/**").permitAll()
+                    .antMatchers("/auth/login", "/auth/register", "/user/**", "/actuator/**").permitAll()
                     .anyRequest().authenticated();
 
         http.authenticationProvider(authenticationProvider());
