@@ -39,10 +39,33 @@ services:
     volumes:
       - app_logs:/app/logs
 
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins
+    container_name: petstore-jenkins
+    user: root
+    ports:
+      - "8081:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      # Docker socket mount - Jenkins'in Docker'a erişimi için
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Proje dizini - Jenkins'in koda erişimi için
+      - .:/workspace
+    networks:
+      - petstore-network
+    restart: unless-stopped
+    environment:
+      - DOCKER_BUILDKIT=1
+
 volumes:
   postgres_data:
   app_logs:
+  jenkins_home:
 
 networks:
   petstore-network:
     driver: bridge
+
