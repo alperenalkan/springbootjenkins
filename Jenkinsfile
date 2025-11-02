@@ -20,8 +20,10 @@ pipeline {
                 script {
                     sh '''
                         cd /workspace
-                        # Force recreate app container
-                        docker-compose up -d --build --no-deps --force-recreate --no-attach app
+                        # Stop, remove and rebuild app container
+                        docker-compose stop app 2>/dev/null || true
+                        docker-compose rm -f app 2>/dev/null || true
+                        docker-compose up -d --build app
                     '''
                 }
             }
