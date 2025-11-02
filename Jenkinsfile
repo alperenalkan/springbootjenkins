@@ -35,7 +35,7 @@ pipeline {
                 script {
                     sh '''
                         sleep 40
-                        curl -f http://localhost:8080/actuator/health || exit 1
+                        curl -f http://petstore-app:8080/actuator/health || exit 1
                     '''
                 }
             }
