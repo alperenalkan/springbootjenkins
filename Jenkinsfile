@@ -20,10 +20,8 @@ pipeline {
                 script {
                     sh '''
                         cd /workspace
-                        # Stop and rebuild app container
-                        docker-compose stop app || true
-                        docker-compose rm -f app || true
-                        docker-compose up -d --build app
+                        # Rebuild app without dependencies
+                        docker-compose up -d --build --no-deps app
                     '''
                 }
             }
