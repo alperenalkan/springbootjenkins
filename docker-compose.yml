@@ -43,3 +43,4 @@ volumes:
 networks:
   petstore-network:
     driver: bridge
+    name: petstore_petstore-network
