@@ -20,12 +20,8 @@ pipeline {
                 script {
                     sh '''
                         cd /workspace
-                        # Stop and remove existing containers
-                        docker stop petstore-app petstore-postgres 2>/dev/null || true
-                        docker rm petstore-app petstore-postgres 2>/dev/null || true
-                        # Deploy with docker-compose
-                        docker-compose -f docker-compose.app.yml down || true
-                        docker-compose -f docker-compose.app.yml up -d --build
+                        # Rebuild only app container
+                        docker-compose up -d --build --no-deps app
                     '''
                 }
             }
